@@ -24,6 +24,10 @@ public class Course {
     @JoinTable(name = "course_student",joinColumns = @JoinColumn(name = "course_id"),inverseJoinColumns = @JoinColumn(name = "student_id"))
     private List<Student>students;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review>reviews;
+
     public Course() {
     }
 
@@ -68,5 +72,20 @@ public class Course {
             students=new ArrayList<>();
         }
         students.add(student);
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void addReviewToCourse(Review review){
+        if(reviews==null){
+            reviews=new ArrayList<>();
+        }
+        reviews.add(review);
     }
 }

@@ -5,6 +5,7 @@ import com.example.instructor.instructorWithServices.DTOs.InstructorDTOs.Instruc
 import com.example.instructor.instructorWithServices.DTOs.InstructorDTOs.InstructorForGetSingle;
 import com.example.instructor.instructorWithServices.Entities.Course;
 import com.example.instructor.instructorWithServices.Entities.Instructor;
+import com.example.instructor.instructorWithServices.Entities.Review;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface ICourseService {
     CourseForGetAll findById(int id);
     void save(Course course,int instructorId);
     void deleteById(int id);
+    Review addReviewToCourse(int courseId,Review review);
 }

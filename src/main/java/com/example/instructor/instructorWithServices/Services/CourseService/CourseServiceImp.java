@@ -5,6 +5,7 @@ import com.example.instructor.instructorWithServices.DAO.InstructorRepository;
 import com.example.instructor.instructorWithServices.DTOs.CourseDTOs.CourseForGetAll;
 import com.example.instructor.instructorWithServices.Entities.Course;
 import com.example.instructor.instructorWithServices.Entities.Instructor;
+import com.example.instructor.instructorWithServices.Entities.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -52,5 +53,13 @@ public class CourseServiceImp implements ICourseService{
     @Override
     public void deleteById(int id) {
 
+    }
+
+    @Override
+    public Review addReviewToCourse(int courseId, Review review) {
+        Course course=courseRepository.findById(courseId).orElseThrow(()->new RuntimeException("course not found"));
+        course.addReviewToCourse(review);
+        courseRepository.save(course);
+        return review;
     }
 }
