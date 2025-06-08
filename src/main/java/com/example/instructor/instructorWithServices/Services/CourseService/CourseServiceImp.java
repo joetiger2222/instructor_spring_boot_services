@@ -6,6 +6,7 @@ import com.example.instructor.instructorWithServices.DTOs.CourseDTOs.CourseForGe
 import com.example.instructor.instructorWithServices.Entities.Course;
 import com.example.instructor.instructorWithServices.Entities.Instructor;
 import com.example.instructor.instructorWithServices.Entities.Review;
+import com.example.instructor.instructorWithServices.Mapper.CourseMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +30,7 @@ public class CourseServiceImp implements ICourseService{
     public List<CourseForGetAll> findAll(int page, int size) {
         Pageable pageable= PageRequest.of(page,size);
         Page<Course> courses=courseRepository.findAll(pageable);
-        List<CourseForGetAll>courses1= courses.stream().map(c->new CourseForGetAll(c.getId(),c.getName())).toList();
+        List<CourseForGetAll>courses1= courses.stream().map(c-> CourseMapper.courseToCourseForGetAll(c)).toList();
         return courses1;
     }
 
