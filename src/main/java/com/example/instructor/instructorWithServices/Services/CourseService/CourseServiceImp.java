@@ -63,4 +63,11 @@ public class CourseServiceImp implements ICourseService{
         courseRepository.save(course);
         return review;
     }
+
+    @Override
+    public List<CourseForGetAll> getCoursesByInstructorId(int instructorId) {
+       List<Course>courses=courseRepository.getCoursesByInstructorId(instructorId);
+       List<CourseForGetAll>courseForGetAlls=courses.stream().map(c->CourseMapper.courseToCourseForGetAll(c)).toList();
+       return courseForGetAlls;
+    }
 }

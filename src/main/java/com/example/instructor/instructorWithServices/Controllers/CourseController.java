@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/course")
@@ -35,5 +38,11 @@ public class CourseController {
     public ResponseEntity<Review>addReviewToCourse(@PathVariable int courseId,@RequestBody Review review){
         return new ResponseEntity<>(courseService.addReviewToCourse(courseId,review), HttpStatus.ACCEPTED);
     }
+
+    @GetMapping("/{instructorId}")
+    public ResponseEntity<List<CourseForGetAll>> getCoursesByInstructorId(@PathVariable int instructorId) {
+        return new ResponseEntity<>(courseService.getCoursesByInstructorId(instructorId),HttpStatus.OK);
+    }
+    
 
 }

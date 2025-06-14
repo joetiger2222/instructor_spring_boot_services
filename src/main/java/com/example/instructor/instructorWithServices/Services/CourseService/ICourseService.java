@@ -15,4 +15,5 @@ public interface ICourseService {
     void save(Course course,int instructorId);
     void deleteById(int id);
     Review addReviewToCourse(int courseId,Review review);
+    List<CourseForGetAll> getCoursesByInstructorId(int instructorId);
 }
